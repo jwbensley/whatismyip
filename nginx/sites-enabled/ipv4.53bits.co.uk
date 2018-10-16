@@ -1,0 +1,26 @@
+iserver {
+
+	listen 80;
+	listen [::]:80;
+
+	root /usr/share/nginx/ipv4.53bits.co.uk/public_html;
+	index index.php;
+	server_name ipv4.53bits.co.uk;
+        access_log      /usr/share/nginx/ipv4.53bits.co.uk/logs/access_log;
+        error_log       /usr/share/nginx/ipv4.53bits.co.uk/logs/error_log;
+
+	gzip off;
+
+	location ~ \.php$ {
+                add_header Access-Control-Allow-Origin *;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                include fastcgi_params;
+
+
+	}
+
+	location ~ /\. { deny  all; }
+}
+
