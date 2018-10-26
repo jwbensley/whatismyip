@@ -6,11 +6,11 @@ server {
 	root /usr/share/nginx/ip.53bits.co.uk/public_html;
 	index index.php;
 	server_name ip.53bits.co.uk;
-        access_log      /usr/share/nginx/ip.53bits.co.uk/logs/access_log;
-        error_log       /usr/share/nginx/ip.53bits.co.uk/logs/error_log;
+	access_log      /usr/share/nginx/ip.53bits.co.uk/logs/access_log;
+	error_log       /usr/share/nginx/ip.53bits.co.uk/logs/error_log;
 
 	location ~ \.php$ {
-		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
                 fastcgi_pass unix:/var/run/php5-fpm.sock;
                 fastcgi_index index.php;
                 include fastcgi_params;
