@@ -1,15 +1,19 @@
 server {
 
 	listen 80;
-	listen [::]:80;
+	#listen [::]:80;
 
 	root /usr/share/nginx/ipv4.53bits.co.uk/public_html;
 	index index.php;
 	server_name ipv4.53bits.co.uk;
-        access_log      /usr/share/nginx/ipv4.53bits.co.uk/logs/access_log;
-        error_log       /usr/share/nginx/ipv4.53bits.co.uk/logs/error_log;
+        access_log /usr/share/nginx/ipv4.53bits.co.uk/logs/access_log;
+        error_log /usr/share/nginx/ipv4.53bits.co.uk/logs/error_log;
 
 	gzip off;
+
+        location / {
+                try_files $uri /index.php;
+        }
 
 	location ~ \.php$ {
                 add_header Access-Control-Allow-Origin *;
