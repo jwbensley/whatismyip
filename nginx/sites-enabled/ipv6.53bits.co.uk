@@ -1,24 +1,24 @@
 server {
 
-	listen 80;
+	#listen 80;
 	listen [::]:80;
 
-	root 	/usr/share/nginx/ipv6.53bits.co.uk/public_html;
-	index 	index.php;
-	server_name	ipv6.53bits.co.uk;
-	access_log      /usr/share/nginx/ipv6.53bits.co.uk/logs/access_log;
-	error_log       /usr/share/nginx/ipv6.53bits.co.uk/logs/error_log;
+	root /usr/share/nginx/ipv6.53bits.co.uk/public_html;
+	index index.php;
+	server_name ipv6.53bits.co.uk;
+	access_log /usr/share/nginx/ipv6.53bits.co.uk/logs/access_log;
+	error_log /usr/share/nginx/ipv6.53bits.co.uk/logs/error_log;
 
 	gzip off;
 
+        location / {
+                try_files $uri /index.php;
+        }
+
         location ~ \.php$ {
-                add_header Access-Control-Allow-Origin *;
-                fastcgi_split_path_info ^(.+\.php)(/.+)$;
-                fastcgi_pass unix:/var/run/php5-fpm.sock;
-                fastcgi_index index.php;
-                set $path_info $fastcgi_path_info;
-                fastcgi_param PATH_INFO $path_info;
-                include fastcgi_params;
+                add_header Access-Control-Allow-Origin *; # This is required for ip.53bits.co.uk for IPv6 only
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
         }
 
 
