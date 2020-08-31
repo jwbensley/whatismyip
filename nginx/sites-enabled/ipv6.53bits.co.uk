@@ -16,7 +16,7 @@ server {
         }
 
         location ~ \.php$ {
-                add_header Access-Control-Allow-Origin *; # This is required for ip.53bits.co.uk for IPv6 only
+            add_header Access-Control-Allow-Origin *; # This is required for requests from ip.53bits.co.uk
             include snippets/fastcgi-php.conf;
             fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
         }
