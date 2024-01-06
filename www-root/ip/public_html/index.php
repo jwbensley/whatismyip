@@ -16,7 +16,7 @@
 				if (o.status == 200) {
 					var z = document.getElementById("addr" + family);
 					a = document.createElement('a');
-					a.href = 'https://apps.db.ripe.net/search/query.html?searchtext=' + o.responseText;
+					a.href = 'https://apps.db.ripe.net/db-web-ui/query?searchtext=' + o.responseText;
 					t = document.createTextNode(o.responseText);
 					a.appendChild(t);
 					while (z.firstChild) { z.removeChild(z.firstChild); }
